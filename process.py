@@ -1,12 +1,11 @@
 import requests
 import pandas as pd 
 import re
+import os
 from plot import produce_plot
 from bokeh.embed import components
 
-
-f = open('qunadlApi.txt')
-key = f.readline().split(':')[-1]
+QUANDL_API = os.environ["QUANDL_API"]
 
 def process_input(tickers):
     patt = re.compile(r"\W+")
@@ -16,7 +15,7 @@ def process_input(tickers):
 
 url = "https://www.quandl.com/api/v3/datasets/WIKI/"
 ftype = ".csv"
-APIKEY = {'api_key':key}
+APIKEY = {'api_key':QUANDL_API}
 
 def request_to_df(r, options):
     options.insert(0,'Date')
