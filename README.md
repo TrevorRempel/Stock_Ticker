@@ -1,0 +1,1 @@
+A simple stock ticker app made using Flask and Bokeh, deployed with Heroku.

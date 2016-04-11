@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Stock Ticker</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="http://cdn.pydata.org/bokeh/release/bokeh-0.11.0.min.css" type="text/css">
+        <script  type = "text/javascript" src="http://cdn.pydata.org/bokeh/release/bokeh-0.11.0.min.js"></script>
+  				{{ script|safe }}
+	</head>
+	<body>
+		<div align = "center">
+  			<h2>Stock Screener</h2>
+  		</div>
+  		<div>
+  			<h5> Enter a stock ticker, eg. GOOGL, and select desired features (you may enter multiple tickers)</h5>
+		</div>
+
+		<div>
+			<form id='ticker-input' method='post' action='index' >
+          		<p>
+    				Ticker   <input type='text' name='ticker' />
+          		</p>	
+	    		<p id='option'>
+	    		<script type="text/javascript">
+					var options = {{op|safe}};
+					var names = {{names|safe}};
+					var check = "";
+					var i;
+					for (i = 0; i < options.length; i++) {
+						if (names[i] === 'Close') {
+							check = " checked"
+
+						}
+						text = '<input type = checkbox name='+options[i]+ ' value='+options[i]+ check + '/>' +" "+ names[i] +'<br />'
+						check = ""
+					    document.write(text);
+					}
+				</script>
+	    		</p>
+	    
+	    </div>
+	    <div>
+	    <div style='float: left'>
+    				<input type='submit' value='Submit' >
+
+         	</form>
+         </div>
+         <div style='float: right'>
+    			<form id ='index' method = 'get' action ='clear'>
+    			
+    				<input type = 'submit' value = 'Clear'/>	
+    			</form>
+    	</div>
+    	</br>
+    	</div>
+        <div>
+        	<script type = "text/javascript">
+        		var notValid = {{notValid | safe}};
+        		var i;
+        		for (i= 0; i< notValid.length; i++)
+        		{
+        			if(i===0){
+        				document.write("<h5> These are not valid tickers: ")
+
+        			}
+
+        			if (i === notValid.length -1)
+        			{
+        				document.write(notValid[i]+"</h5>")	
+        			}
+        			else
+        			{
+        				document.write(notValid[i] + ", ")
+        			}
+        			
+
+        		}
+
+        	</script>
+        </div>
+	    <div class='bokeh' align='center'>
+   			<script type="text/javascript">
+   					
+					var divs = {{div | safe}};
+					var i;
+					
+					for (i = 0; i < divs.length; i++) {
+				
+					    document.write(divs[i]);
+					}
+					
+					//document.write(divs[0]);
+				</script>
+
+  </div>
+          		
+		
+
+	</body>
+</html>

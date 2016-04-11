@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Stock Ticker</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	
+	<body>
+		<div align = "center">
+  			<h2>Stock Screener</h2>
+  		</div>
+  		<div>
+  			<h5> Enter a stock ticker, eg. GOOGL, and select desired features (you may enter multiple tickers)</h5>
+		</div>
+
+		<div>
+			<form id='ticker-input' method='post' action='index' >
+          		<p>
+    				Ticker   <input type='text' name='ticker' />
+          		</p>	
+	    		<p id='option'>
+	    		<script type="text/javascript">
+					var options = {{op|safe}};
+					var names = {{names|safe}};
+					var check = "";
+					var i;
+					for (i = 0; i < options.length; i++) {
+						if (names[i] === 'Close') {
+							check = " checked"
+
+						}
+						text = '<input type = checkbox name='+options[i]+ ' value='+options[i]+ check + '/>' +" "+ names[i] +'<br />'
+						check = ""
+					    document.write(text);
+					}
+				</script>
+	    		</p>
+	    		<p>
+    				<input type='submit' value='Submit' />
+         		</p>
+        	</form>
+        </div>
+
+	</body>
+</html>
