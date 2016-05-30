@@ -44,9 +44,14 @@ def index():
 		#global div
 		script, div=components(fig)
 		'''
-		
+
+		if len(notValid) > 0:
+			notValidstr = 'These are not valid tickers: ' + ', '.join(notValid)
+		else:
+			notValidstr = ""
+
 		return render_template('plot.html', op = app.OPTIONS, names = app.NAMES,\
-			script = app.script, div = json.dumps(app.div), notValid = json.dumps(notValid))
+			script = app.script, div = json.dumps(app.div), notValid = notValidstr)
 
 
 
